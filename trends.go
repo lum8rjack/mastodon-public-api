@@ -50,7 +50,7 @@ type TrendTags []struct {
 func (c *Client) GetTrendsLinks() (TrendLinks, error) {
 	links := TrendLinks{}
 
-	url := fmt.Sprintf("https://%s%s", c.Server, TrendsLinksURI)
+	url := fmt.Sprintf("%s%s", c.Server, TrendsLinksURI)
 
 	body, err := c.SendRequest(url)
 	if err != nil {
@@ -82,7 +82,7 @@ func (c *Client) GetTrendsLinks() (TrendLinks, error) {
 func (c *Client) GetTrendsTags() (TrendTags, error) {
 	tags := TrendTags{}
 
-	url := fmt.Sprintf("https://%s%s", c.Server, TrendsTagsURI)
+	url := fmt.Sprintf("%s%s", c.Server, TrendsTagsURI)
 
 	body, err := c.SendRequest(url)
 	if err != nil {

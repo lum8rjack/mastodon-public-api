@@ -11,7 +11,7 @@ import (
 // Convenience constants Mastodon
 const (
 	UserAgent = "mastodon-public-api"
-	timeout   = 5
+	Timeout   = 5
 )
 
 // Client is a API client for mastodon.
@@ -30,7 +30,7 @@ func NewClient(server string) *Client {
 	}
 
 	// Set default timeout
-	c.Client.Timeout = time.Second * timeout
+	c.Client.Timeout = time.Second * Timeout
 
 	return c
 }

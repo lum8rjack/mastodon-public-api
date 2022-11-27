@@ -15,13 +15,14 @@ type Emojis []struct {
 	URL             string `json:"url"`
 	StaticURL       string `json:"static_url"`
 	VisibleInPicker bool   `json:"visible_in_picker"`
+	Category        string `json:"category,omitempty"`
 }
 
 // Get custom emojis that are available on the server
 func (c *Client) GetCustomEmojis() (Emojis, error) {
-	customemojis := Emojis{}
+	var customemojis Emojis
 
-	url := fmt.Sprintf("https://%s%s", c.Server, CustomEmojisURI)
+	url := fmt.Sprintf("%s%s", c.Server, CustomEmojisURI)
 
 	body, err := c.SendRequest(url)
 	if err != nil {
