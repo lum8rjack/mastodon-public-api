@@ -300,9 +300,12 @@ func TestGetInstanceData(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
-	_, err := client.GetInstanceData()
+	_, err = client.GetInstanceData()
 	if err != nil {
 		t.Fatalf("should not be fail: %v", err)
 	}
@@ -330,7 +333,10 @@ func TestGetInstancePeers(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	ip, err := client.GetInstancePeers()
 	if err != nil {
@@ -382,7 +388,10 @@ func TestGetInstancePeersWhitelisted(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	ip, err := client.GetInstancePeers()
 	if err != nil {
@@ -421,7 +430,10 @@ func TestGetInstanceActivity(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	ia, err := client.GetInstanceActivity()
 	if err != nil {
@@ -477,7 +489,10 @@ func TestGetInstanceActivityWhitelisted(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	ia, err := client.GetInstanceActivity()
 	if err != nil {
@@ -516,7 +531,10 @@ func TestGetInstanceRules(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	ir, err := client.GetInstanceRules()
 	if err != nil {
@@ -554,7 +572,10 @@ func TestGetInstanceDomainsBlocked(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	db, err := client.GetInstanceDomainsBlocked()
 	if err != nil {
@@ -610,7 +631,10 @@ func TestGetInstanceDomainsBlockedWhitelisted(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	db, err := client.GetInstanceDomainsBlocked()
 	if err != nil {

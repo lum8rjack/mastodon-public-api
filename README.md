@@ -22,7 +22,10 @@ import (
 func main() {
 	server := "https://infosec.exchange"
 
-	client := mastodon.NewClient(*server)
+	client, err := mastodon.NewClient(*server)
+	if err != nil {
+		log.Fatalf("failed to create client: %v", err)
+	}
 
 	instanceData, err := client.GetInstanceData()
 	if err != nil {

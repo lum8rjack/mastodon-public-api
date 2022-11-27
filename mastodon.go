@@ -2,9 +2,11 @@ package mastodon
 
 import (
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -22,7 +24,14 @@ type Client struct {
 }
 
 // NewClient returns a new mastodon API client.
-func NewClient(server string) *Client {
+func NewClient(server string) (*Client, error) {
+	// Check that the user provided a valid schema
+	serverlower := strings.ToLower(server)
+	if !strings.HasPrefix(serverlower, "https://") && !strings.HasPrefix(serverlower, "http://") {
+		e := fmt.Sprintf("invalid server provided: %s", server)
+		return &Client{}, errors.New(e)
+	}
+
 	c := &Client{
 		Client:    *http.DefaultClient,
 		Server:    server,
@@ -32,7 +41,7 @@ func NewClient(server string) *Client {
 	// Set default timeout
 	c.Client.Timeout = time.Second * Timeout
 
-	return c
+	return c, nil
 }
 
 // Send request and obtain body

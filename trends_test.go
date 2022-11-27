@@ -128,9 +128,12 @@ func TestGetTrendsLinks(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
-	_, err := client.GetTrendsLinks()
+	_, err = client.GetTrendsLinks()
 	if err != nil {
 		t.Fatalf("should not be fail: %v", err)
 	}
@@ -162,9 +165,12 @@ func TestGetTrendsTags(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
-	_, err := client.GetTrendsTags()
+	_, err = client.GetTrendsTags()
 	if err != nil {
 		t.Fatalf("should not be fail: %v", err)
 	}

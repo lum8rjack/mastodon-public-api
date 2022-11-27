@@ -44,7 +44,10 @@ func TestGetCustomEmojis(t *testing.T) {
 	defer ts.Close()
 
 	// Setup client
-	client := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	emojis, err := client.GetCustomEmojis()
 	if err != nil {

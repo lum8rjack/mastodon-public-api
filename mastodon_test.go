@@ -11,7 +11,10 @@ import (
 
 func TestNewClient(t *testing.T) {
 	server := "https://infosec.exchange"
-	client := NewClient(server)
+	client, err := NewClient(server)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	if client.Server != server {
 		t.Fatalf("server was incorrectly set to: %s", client.Server)
@@ -54,10 +57,13 @@ func TestSendRequest(t *testing.T) {
 	defer ts.Close()
 
 	// Create client
-	c := NewClient(ts.URL)
+	client, err := NewClient(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to create client: %v", err)
+	}
 
 	// Check base url
-	body, err := c.SendRequest(ts.URL)
+	body, err := client.SendRequest(ts.URL)
 	if err != nil {
 		t.Fatalf("should not fail: %v", err)
 	}
