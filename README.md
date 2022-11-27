@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-	server := "infosec.exchange"
+	server := "https://infosec.exchange"
 
 	client := mastodon.NewClient(*server)
 
